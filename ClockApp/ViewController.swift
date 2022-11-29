@@ -9,12 +9,44 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    
+      @IBOutlet weak var timeLabel: UILabel!
+    
+    let formatter = DateFormatter()
+    
+    var timer: Timer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+        updateTimeLabel()
+        
+        formatter.timeStyle = .medium
+
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: updateTimeLabel(timer:))
+    
     }
 
+        func updateTimeLabel(timer: Timer? = nil) {
+    let date = Date()
+    let dateString = formatter.string(from: date)
+        
+                
+       timeLabel.text = dateString
+        
+        
+    }
+    
+    deinit {
+        timer?.invalidate()
+        <#statements#>
+    }
+    
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -23,3 +55,5 @@ class ViewController: UIViewController {
 
 }
 
+
+// Gör en Chackklocka
